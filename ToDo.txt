@@ -1,0 +1,7 @@
+Piłka jest ustawiona w Canvas.
+W metodzie, która robi refresh Gauge values dopisać, że jeśli:
+- obecne attention jest większe niż poprzednie to "Canvas.SetTop(Ball, --)", wpp "Canvas.SetTop(Ball, ++)"
+- obecne meditation jest większe niż poprzednie to
+"Canvas.SetLeft(Ball, ++)", wpp "Canvas.SetTop(Ball, --)"
+
+Taki pomysł, żebyś dorobił bramkę na zdjęciu stadionu i celem jest wprowadzić piłkę do bramki 

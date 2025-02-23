@@ -1,0 +1,182 @@
+﻿<Window x:Class="MindWaveReaderWPF.WindowMain"
+        SizeChanged="MainWindow_SizeChanged"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d"
+        Title="Mind Wave Reader" Height="600" Width="1200"
+        Icon="icon/icon.ico"
+        FlowDirection="LeftToRight" WindowState="Maximized">
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" MinWidth="370"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DockPanel LastChildFill="True" Margin="0,0,12,0">
+            <DockPanel.Resources>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Margin" Value="0,6"></Setter>
+                </Style>
+                <Style TargetType="ComboBox">
+                    <Setter Property="MinWidth" Value="100"></Setter>
+                    <Setter Property="Background" Value="White"></Setter>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="MinWidth" Value="110"></Setter>
+                    <Setter Property="MinHeight" Value="32"></Setter>
+                    <Setter Property="Margin" Value="0,6,12,6"></Setter>
+                    <Setter Property="Background" Value="White"></Setter>
+                </Style>
+            </DockPanel.Resources>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <TextBlock FontWeight="UltraLight" FontSize="42" Foreground="DarkSlateBlue" Text="Mind Goal"/>
+                <Image Width="50" Height="50" Source="icon/icon.ico" Margin="10,0,0,0">
+                    <Image.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="0"/>
+                    </Image.Effect>
+                </Image>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Width="358">
+                <Label Content="Port:" Margin="5"/>
+                <ComboBox Name="ComboBoxPortName" Width="2" Margin="5">
+                    <ComboBoxItem>COM1</ComboBoxItem>
+                    <ComboBoxItem>COM2</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">COM3</ComboBoxItem>
+                    <ComboBoxItem>COM4</ComboBoxItem>
+                    <ComboBoxItem>COM5</ComboBoxItem>
+                    <ComboBoxItem>COM6</ComboBoxItem>
+                    <ComboBoxItem>COM7</ComboBoxItem>
+                </ComboBox>
+                <Button x:Name="CSVexport" Content="CSV Export"  Margin="5" Click="CSVexport_Click" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <Button x:Name="ButtonConnect" Click="ButtonConnect_Click" IsDefault="True" Content="Connect"/>
+                <Button x:Name="ButtonDisconnect" Click="ButtonDisconnect_Click" Content="Disconnect"/>
+                <Button x:Name="ButtonClear" Click="ButtonClear_Click" Content="Clear data"/>
+            </StackPanel>
+            <ScrollViewer DockPanel.Dock="Top" 
+                          HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Auto" >
+                <TextBlock Name="TextBlockLog" Background="Cornsilk" FlowDirection="LeftToRight" TextWrapping="WrapWithOverflow" Height="285"></TextBlock>
+            </ScrollViewer>
+            <StackPanel DockPanel.Dock="Top" FlowDirection="LeftToRight">
+                <Grid Background="Cornsilk">
+                    <Grid.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="FontWeight" Value="DemiBold"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Column="0" HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Row="0" VerticalAlignment="Center">
+                            <Label Foreground="DarkBlue" Name="MentalEffort" Content="Mental effort: " />
+                        </Grid>
+                        <Grid Row="1" VerticalAlignment="Center">
+                            <Label Foreground="DarkGreen" Name="TaskFamiliarity" Content="Task familiarity: " />
+                        </Grid>
+                    </Grid>
+                    <Grid Column="1" HorizontalAlignment="Left">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" MaxHeight="200"></RowDefinition>
+                            <RowDefinition Height="3*" MaxHeight="200"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Row="0" VerticalAlignment="Center">
+                            <Image Name="ImageTrendMentalEffort" Source="icon/no_data.png" Width="32" Height="32"></Image>
+                        </Grid>
+                        <Grid Row="1" VerticalAlignment="Center">
+                            <Image Name="ImageTrendTaskFamiliarity" Source="icon/no_data.png" Width="32" Height="32"></Image>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="lvc:AngularGauge">
+                        <Setter Property="Padding" Value="0,6"></Setter>
+                        <Setter Property="Width" Value="120"></Setter>
+                        <Setter Property="Height" Value="120"></Setter>
+                        <Setter Property="FromValue" Value="-100"></Setter>
+                        <Setter Property="ToValue" Value="100"></Setter>
+                        <Setter Property="LabelsStep" Value="50"></Setter>
+                        <Setter Property="TicksStep" Value="10"></Setter>
+                        <Setter Property="Wedge" Value="270"></Setter>
+                        <Setter Property="SectionsInnerRadius" Value="0.5"></Setter>
+                        <Setter Property="TicksForeground" Value="DarkGray"></Setter>
+                        <Setter Property="Foreground" Value="White"></Setter>
+                    </Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="TextAlignment" Value="Center"></Setter>
+                        <Setter Property="Margin" Value="0,0,0,24"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <lvc:AngularGauge x:Name="GaugeSignalStrength"
+                                          FromValue="0" ToValue="100" TicksStep="5" LabelsStep="25" Height="150" Width="auto"  HorizontalContentAlignment="Center">
+                    <lvc:AngularGauge.Sections>
+                        <lvc:AngularSection FromValue="0" ToValue="20" Fill="#CBE3CE"/>
+                        <lvc:AngularSection FromValue="20" ToValue="50" Fill="#A5D5AB"/>
+                        <lvc:AngularSection FromValue="50" ToValue="75" Fill="#86E192"/>
+                        <lvc:AngularSection FromValue="75" ToValue="100" Fill="#2FB040"/>
+                    </lvc:AngularGauge.Sections>
+                </lvc:AngularGauge>
+                <TextBlock Text="Signal Strength %" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </DockPanel>
+        <Grid Grid.Column="1" FlowDirection="LeftToRight" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" MaxHeight="300"></RowDefinition>
+                <RowDefinition Height="1*" MaxHeight="30"></RowDefinition>
+                <RowDefinition Height="1*" MaxHeight="30"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="lvc:Gauge">
+                        <Setter Property="GaugeBackground" Value="WhiteSmoke"></Setter>
+                        <Setter Property="Margin" Value="6"></Setter>
+                        <Setter Property="Uses360Mode" Value="False"></Setter>
+                        <Setter Property="From" Value="0"></Setter>
+                        <Setter Property="To" Value="100"></Setter>
+                    </Style>
+                </Grid.Resources>
+                <lvc:Gauge Name="GaugeAttention" Grid.Row="0" Grid.Column="1">
+                    <lvc:Gauge.GaugeActiveFill>
+                        <LinearGradientBrush>
+                            <GradientStop Color="White" Offset="0.0" />
+                            <GradientStop Color="RoyalBlue" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </lvc:Gauge.GaugeActiveFill>
+                </lvc:Gauge>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="1">
+                    <TextBlock Text="Attention Lvl"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.Background>
+                    <ImageBrush ImageSource="icon/goal.png" Stretch="Fill"/>
+                </Grid.Background>
+                <Canvas x:Name="ballSpace" Loaded="isLoaded">
+                    <Image x:Name ="Ball" Height="81" Width="81" Source="icon/ball.png"/>
+                    <Rectangle x:Name="goalFrame" Height="89" Width="89" Stroke="Red" StrokeThickness="7"/>
+                </Canvas>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
