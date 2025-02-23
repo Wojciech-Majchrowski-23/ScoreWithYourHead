@@ -70,12 +70,36 @@ namespace MindWaveReaderWPF
                 Canvas.SetTop(goalFrame, goalFrameStartingHeight);
 
                 stepUp = Math.Abs(ballStartingHeight - goalFrameStartingHeight) / 6;
-                stepDown = stepUp / 2;
+                //stepDown = stepUp / 2;
                 stepRight = Math.Abs(ballStartingWidth - goalFrameStartingWidth) / 6;
-                stepLeft = stepRight / 2;
+                //stepLeft = stepRight / 2;
 
             };
 
+        }
+        private void isLoaded(object sender, RoutedEventArgs e)
+        {
+            if (ballSpace.IsLoaded)
+            {
+                double width = ballSpace.ActualWidth;
+                double height = ballSpace.ActualHeight;
+
+                double ballStartingWidth = width * 0.1;
+                double ballStartingHeight = height * 0.8;
+
+                Canvas.SetLeft(Ball, ballStartingWidth);
+                Canvas.SetTop(Ball, ballStartingHeight);
+
+                double goalFrameStartingWidth = width * 0.7;
+                double goalFrameStartingHeight = height * 0.3;
+
+                Canvas.SetLeft(goalFrame, goalFrameStartingWidth);
+                Canvas.SetTop(goalFrame, goalFrameStartingHeight);
+
+                stepUp = Math.Abs(ballStartingHeight - goalFrameStartingHeight) / 10;
+                stepRight = Math.Abs(ballStartingWidth - goalFrameStartingWidth) / 10;
+
+            };
         }
 
         #endregion
@@ -193,11 +217,19 @@ namespace MindWaveReaderWPF
                 {
                     Canvas.SetTop(Ball, Canvas.GetTop(Ball) - stepUp);
                     Canvas.SetLeft(Ball, Canvas.GetLeft(Ball) + stepRight);
+                    if (checkIfGoal())
+                    {
+                        stepUp = 0;
+                        stepRight = 0;
+                        Status.Text = "GOOOOOOOOAAAAAALLLL!!!";
+                        //Roboczo 
+                        //po prostu zeby przestala sie ruszac
+                    }
                 }
                 else
                 {
-                    Canvas.SetTop(Ball, Canvas.GetTop(Ball) + stepDown);
-                    Canvas.SetLeft(Ball, Canvas.GetLeft(Ball) - stepLeft);
+                    Canvas.SetTop(Ball, Canvas.GetTop(Ball) + stepUp);
+                    Canvas.SetLeft(Ball, Canvas.GetLeft(Ball) - stepRight);
                 }
 
                 if (Canvas.GetLeft(Ball) <= ballSpace.ActualWidth * 0.1)
@@ -213,6 +245,17 @@ namespace MindWaveReaderWPF
                 GaugeAttention.LabelFormatter = value => value + "%";
             }
 
+        }
+        private bool checkIfGoal()
+        {
+            if(Canvas.GetTop(goalFrame) <= Canvas.GetTop(Ball) && Canvas.GetTop(goalFrame)+goalFrame.ActualHeight >= Canvas.GetTop(Ball) + Ball.ActualHeight)
+            {
+                if(Canvas.GetLeft(goalFrame) <= Canvas.GetLeft(Ball) && Canvas.GetLeft(goalFrame)+goalFrame.ActualWidth >= Canvas.GetLeft(Ball)+Ball.ActualWidth)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void RefreshAngularGaugesValues(ThinkGearData currentTgData)
@@ -362,36 +405,5 @@ namespace MindWaveReaderWPF
 
         #endregion
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void isLoaded(object sender, RoutedEventArgs e)
-        {
-            if (ballSpace.IsLoaded)
-            {
-                double width = ballSpace.ActualWidth;
-                double height = ballSpace.ActualHeight;
-
-                double ballStartingWidth = width * 0.1;
-                double ballStartingHeight = height * 0.8;
-
-                Canvas.SetLeft(Ball, ballStartingWidth);
-                Canvas.SetTop(Ball, ballStartingHeight);
-
-                double goalFrameStartingWidth = width * 0.7;
-                double goalFrameStartingHeight = height * 0.3;
-
-                Canvas.SetLeft(goalFrame, goalFrameStartingWidth);
-                Canvas.SetTop(goalFrame, goalFrameStartingHeight);
-
-                stepUp = Math.Abs(ballStartingHeight - goalFrameStartingHeight) / 6;
-                stepDown = stepUp / 2;
-                stepRight = Math.Abs(ballStartingWidth - goalFrameStartingWidth) / 6;
-                stepLeft = stepRight / 2;
-
-            };
-        }
     }
 }

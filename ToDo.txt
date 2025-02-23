@@ -1,7 +1,5 @@
-Piłka jest ustawiona w Canvas.
-W metodzie, która robi refresh Gauge values dopisać, że jeśli:
-- obecne attention jest większe niż poprzednie to "Canvas.SetTop(Ball, --)", wpp "Canvas.SetTop(Ball, ++)"
-- obecne meditation jest większe niż poprzednie to
-"Canvas.SetLeft(Ball, ++)", wpp "Canvas.SetTop(Ball, --)"
+Metoda losujaca pozycje pilki i prostokąta
 
-Taki pomysł, żebyś dorobił bramkę na zdjęciu stadionu i celem jest wprowadzić piłkę do bramki 
+płynniejszy ruch piłki - np. zrób tak żeby płynęła, a nie przeskakiwała
+
+Interfejs graficzny - zrób własną ikonkę i obok attention napis "score a goal" zamieniający się w "Goal", gdy strzelisz

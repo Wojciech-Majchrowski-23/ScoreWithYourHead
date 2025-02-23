@@ -43,8 +43,8 @@
                 <ComboBox Name="ComboBoxPortName" Width="2" Margin="5">
                     <ComboBoxItem>COM1</ComboBoxItem>
                     <ComboBoxItem>COM2</ComboBoxItem>
-                    <ComboBoxItem IsSelected="True">COM3</ComboBoxItem>
-                    <ComboBoxItem>COM4</ComboBoxItem>
+                    <ComboBoxItem>COM3</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">COM4</ComboBoxItem>
                     <ComboBoxItem>COM5</ComboBoxItem>
                     <ComboBoxItem>COM6</ComboBoxItem>
                     <ComboBoxItem>COM7</ComboBoxItem>
@@ -59,7 +59,7 @@
             <ScrollViewer DockPanel.Dock="Top" 
                           HorizontalScrollBarVisibility="Auto" 
                           VerticalScrollBarVisibility="Auto" >
-                <TextBlock Name="TextBlockLog" Background="Cornsilk" FlowDirection="LeftToRight" TextWrapping="WrapWithOverflow" Height="285"></TextBlock>
+                <TextBlock x:Name ="TextBlockLog" Background="Cornsilk" FlowDirection="LeftToRight" TextWrapping="WrapWithOverflow" Height="285"></TextBlock>
             </ScrollViewer>
             <StackPanel DockPanel.Dock="Top" FlowDirection="LeftToRight">
                 <Grid Background="Cornsilk">
@@ -162,9 +162,13 @@
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="165*"></ColumnDefinition>
+                    <ColumnDefinition Width="641*"/>
                 </Grid.ColumnDefinitions>
-                <Viewbox Grid.Column="1">
+                <Viewbox Grid.ColumnSpan="1">
+                    <TextBlock x:Name ="Status" Text="Score a goal"/>
+                </Viewbox>
+                <Viewbox Grid.ColumnSpan="2">
                     <TextBlock Text="Attention Lvl"/>
                 </Viewbox>
             </Grid>
@@ -173,7 +177,7 @@
                     <ImageBrush ImageSource="icon/goal.png" Stretch="Fill"/>
                 </Grid.Background>
                 <Canvas x:Name="ballSpace" Loaded="isLoaded">
-                    <Image x:Name ="Ball" Height="81" Width="81" Source="icon/ball.png"/>
+                    <Image x:Name ="Ball" Height="80" Width="80" Source="icon/ball.png"/>
                     <Rectangle x:Name="goalFrame" Height="89" Width="89" Stroke="Red" StrokeThickness="7"/>
                 </Canvas>
             </Grid>
