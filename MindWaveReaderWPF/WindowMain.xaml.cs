@@ -160,7 +160,6 @@ namespace MindWaveReaderWPF
 
         private void ButtonDisconnect_Click(object sender, RoutedEventArgs e)
         {
-            LogClear();
 
             try
             {
@@ -193,11 +192,10 @@ namespace MindWaveReaderWPF
             {
                 try
                 {
-                    RefreshGaugesValues(currentTgData);     //doloz wlasna funkcje refreshBoisko
+                    RefreshGaugesValues(currentTgData);    
                     RefreshAngularGaugesValues(currentTgData);
-                    RefreshEnumerativeValues(currentTgData);
 
-                    RefreshTextLogData();
+                    //RefreshTextLogData();
                 }
                 catch (Exception ex)
                 {
@@ -221,9 +219,8 @@ namespace MindWaveReaderWPF
                     {
                         stepUp = 0;
                         stepRight = 0;
-                        Status.Text = "GOOOOOOOOAAAAAALLLL!!!";
-                        //Roboczo 
-                        //po prostu zeby przestala sie ruszac
+                        ScoreAGoal.Visibility = Visibility.Hidden;
+                        Goaaaaal.Visibility = Visibility.Visible;
                     }
                 }
                 else
@@ -265,36 +262,6 @@ namespace MindWaveReaderWPF
             if (!(currentTgData.PoorSignal > -1)) return;
             GaugeSignalStrength.Value = Converters.PoorSignalTranscoder(currentTgData.PoorSignal);
             _thingGearController.TgLatestData.PoorSignal = currentTgData.PoorSignal;
-        }
-
-        private void RefreshEnumerativeValues(ThinkGearData currentTgData)
-        {
-            var bitmapUpTrend = new BitmapImage(new Uri(Properties.Settings.Default.icon_up, UriKind.Relative));
-            var bitmapDownTrend = new BitmapImage(new Uri(Properties.Settings.Default.icon_down, UriKind.Relative));
-
-            //Task Familiarity
-
-            if ((int)currentTgData.TaskFamiliarity != 0)
-            {
-                TaskFamiliarity.Content = Properties.Resources.TaskFamiliarity + currentTgData.TaskFamiliarity.ToString("F");
-
-                ImageTrendTaskFamiliarity.Source =
-                    _thingGearController.TgLatestData.TaskFamiliarity > currentTgData.TaskFamiliarity ? bitmapDownTrend : bitmapUpTrend;
-
-                _thingGearController.TgLatestData.TaskFamiliarity = currentTgData.TaskFamiliarity;
-            }
-
-            //Mental Effort
-
-            if ((int)currentTgData.MentalEffort != 0)
-            {
-                MentalEffort.Content = Properties.Resources.MentalEffort + currentTgData.MentalEffort.ToString("F");
-
-                ImageTrendMentalEffort.Source =
-                    _thingGearController.TgLatestData.MentalEffort > currentTgData.MentalEffort ? bitmapDownTrend : bitmapUpTrend;
-
-                _thingGearController.TgLatestData.MentalEffort = currentTgData.MentalEffort;
-            }
         }
 
         #region ChartsHelpers

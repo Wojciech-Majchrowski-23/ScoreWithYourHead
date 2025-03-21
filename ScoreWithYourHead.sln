@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindWaveReaderWPF", "MindWaveReaderWPF\MindWaveReaderWPF.csproj", "{58B2CF56-1382-4F83-B9D5-CDACFA634868}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoreWithYourHeadWPF", "MindWaveReaderWPF\ScoreWithYourHeadWPF.csproj", "{58B2CF56-1382-4F83-B9D5-CDACFA634868}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

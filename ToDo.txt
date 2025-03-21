@@ -1,5 +1,0 @@
-Metoda losujaca pozycje pilki i prostokąta
-
-płynniejszy ruch piłki - np. zrób tak żeby płynęła, a nie przeskakiwała
-
-Interfejs graficzny - zrób własną ikonkę i obok attention napis "score a goal" zamieniający się w "Goal", gdy strzelisz

@@ -31,8 +31,8 @@
                 </Style>
             </DockPanel.Resources>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <TextBlock FontWeight="UltraLight" FontSize="42" Foreground="DarkSlateBlue" Text="Mind Goal"/>
-                <Image Width="50" Height="50" Source="icon/icon.ico" Margin="10,0,0,0">
+                <TextBlock FontWeight="UltraLight" FontSize="30" Foreground="DarkSlateBlue" Text="Score with your head"/>
+                <Image Width="75" Height="75" Source="icon/scoreWithHeadIcon.PNG" Margin="10,0,0,0" RenderTransformOrigin="1.581,0.516">
                     <Image.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="0"/>
                     </Image.Effect>
@@ -59,46 +59,8 @@
             <ScrollViewer DockPanel.Dock="Top" 
                           HorizontalScrollBarVisibility="Auto" 
                           VerticalScrollBarVisibility="Auto" >
-                <TextBlock x:Name ="TextBlockLog" Background="Cornsilk" FlowDirection="LeftToRight" TextWrapping="WrapWithOverflow" Height="285"></TextBlock>
+                <TextBlock x:Name ="TextBlockLog" Background="Cornsilk" FontSize="18" Text="Score a goal with your head&#10;Football Club Neuron is counting on You!!!&#10;&#10;" TextAlignment="Center" FlowDirection="LeftToRight" TextWrapping="WrapWithOverflow" Height="285" Width="358"/>
             </ScrollViewer>
-            <StackPanel DockPanel.Dock="Top" FlowDirection="LeftToRight">
-                <Grid Background="Cornsilk">
-                    <Grid.Resources>
-                        <Style TargetType="Label">
-                            <Setter Property="FontSize" Value="15"></Setter>
-                            <Setter Property="FontWeight" Value="DemiBold"></Setter>
-                        </Style>
-                    </Grid.Resources>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid Column="0" HorizontalAlignment="Center">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"></RowDefinition>
-                            <RowDefinition Height="50"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid Row="0" VerticalAlignment="Center">
-                            <Label Foreground="DarkBlue" Name="MentalEffort" Content="Mental effort: " />
-                        </Grid>
-                        <Grid Row="1" VerticalAlignment="Center">
-                            <Label Foreground="DarkGreen" Name="TaskFamiliarity" Content="Task familiarity: " />
-                        </Grid>
-                    </Grid>
-                    <Grid Column="1" HorizontalAlignment="Left">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="3*" MaxHeight="200"></RowDefinition>
-                            <RowDefinition Height="3*" MaxHeight="200"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid Row="0" VerticalAlignment="Center">
-                            <Image Name="ImageTrendMentalEffort" Source="icon/no_data.png" Width="32" Height="32"></Image>
-                        </Grid>
-                        <Grid Row="1" VerticalAlignment="Center">
-                            <Image Name="ImageTrendTaskFamiliarity" Source="icon/no_data.png" Width="32" Height="32"></Image>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </StackPanel>
             <StackPanel>
                 <StackPanel.Resources>
                     <Style TargetType="lvc:AngularGauge">
@@ -151,7 +113,7 @@
                         <Setter Property="To" Value="100"></Setter>
                     </Style>
                 </Grid.Resources>
-                <lvc:Gauge Name="GaugeAttention" Grid.Row="0" Grid.Column="1">
+                <lvc:Gauge Name="GaugeAttention" Grid.Row="0" Margin="214,6,-202,6">
                     <lvc:Gauge.GaugeActiveFill>
                         <LinearGradientBrush>
                             <GradientStop Color="White" Offset="0.0" />
@@ -161,14 +123,9 @@
                 </lvc:Gauge>
             </Grid>
             <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="165*"></ColumnDefinition>
-                    <ColumnDefinition Width="641*"/>
-                </Grid.ColumnDefinitions>
                 <Viewbox Grid.ColumnSpan="1">
-                    <TextBlock x:Name ="Status" Text="Score a goal"/>
                 </Viewbox>
-                <Viewbox Grid.ColumnSpan="2">
+                <Viewbox Margin="209,0,-209,0">
                     <TextBlock Text="Attention Lvl"/>
                 </Viewbox>
             </Grid>
@@ -179,6 +136,8 @@
                 <Canvas x:Name="ballSpace" Loaded="isLoaded">
                     <Image x:Name ="Ball" Height="80" Width="80" Source="icon/ball.png"/>
                     <Rectangle x:Name="goalFrame" Height="89" Width="89" Stroke="Red" StrokeThickness="7"/>
+                    <Image x:Name="ScoreAGoal" Visibility="Visible" Height="305" Width="509" Source="icon/score_a_goal.png" Canvas.Top="-241" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Image x:Name="Goaaaaal" Visibility="Hidden" Source="/icon/goaaaaal.png" Stretch="Fill" Height="236" Canvas.Top="-241" Width="521" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 </Canvas>
             </Grid>
         </Grid>
